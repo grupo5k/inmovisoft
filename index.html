@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inmovisoft — El ERP Inmobiliario más completo de México</title>
+  <meta name="description" content="Inmovisoft es el sistema ERP diseñado para inmobiliarias. Gestiona ventas, proyectos, finanzas, WhatsApp, firma electrónica, facturación y más desde una sola plataforma." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:title" content="Inmovisoft — El ERP Inmobiliario más completo de México" />
+  <meta property="og:description" content="Inmovisoft es el sistema ERP diseñado para inmobiliarias. Gestiona ventas, proyectos, finanzas, WhatsApp, firma electrónica, facturación y más desde una sola plataforma." />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Inmovisoft, ERP inmobiliario todo en uno para inmobiliarias en México" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Inmovisoft — El ERP Inmobiliario más completo de México" />
+  <meta name="twitter:description" content="Inmovisoft es el sistema ERP diseñado para inmobiliarias. Gestiona ventas, proyectos, finanzas, WhatsApp, firma electrónica, facturación y más desde una sola plataforma." />
+  <meta name="twitter:image" content="assets/og-image.png" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0B1628;
+      --navy-mid:    #112040;
+      --navy-light:  #1A3260;
+      --topbar-h:    34px;
+      --gold:        #C9954C;
+      --gold-light:  #E8B872;
+      --gold-pale:   #FDF4E7;
+      --white:       #FFFFFF;
+      --gray-100:    #F7F8FA;
+      --gray-200:    #E8EBF0;
+      --gray-500:    #7B8499;
+      --gray-700:    #3D4560;
+      --radius-sm:   8px;
+      --radius-md:   16px;
+      --radius-lg:   24px;
+      --shadow-card: 0 4px 32px rgba(11,22,40,.12);
+      --shadow-gold: 0 8px 40px rgba(201,149,76,.25);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: var(--topbar-h); left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(11,22,40,.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,149,76,.2);
+      transition: background .3s;
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .875rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      padding: .55rem 1.5rem;
+      border-radius: 50px;
+      font-size: .875rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0D2044 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 0 5%;
+    }
+
+    .hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,149,76,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,149,76,.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridFloat 20s linear infinite;
+    }
+
+    @keyframes gridFloat {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,149,76,.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(26,50,96,.8) 0%, transparent 70%);
+      bottom: -50px; left: 20%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem;
+      width: 100%; max-width: 1280px; margin: 0 auto;
+      padding-top: 72px;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(201,149,76,.15);
+      border: 1px solid rgba(201,149,76,.4);
+      padding: .35rem 1rem;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: .5px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+
+    .hero-sub {
+      color: rgba(255,255,255,.7);
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 540px;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: .9rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+      box-shadow: var(--shadow-gold);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 48px rgba(201,149,76,.35); }
+
+    .btn-ghost {
+      color: var(--white);
+      padding: .9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1.5px solid rgba(255,255,255,.3);
+      transition: all .25s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.05); }
+
+    .hero-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .dashboard-mock {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 520px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 32px 80px rgba(0,0,0,.4);
+      animation: floatCard 4s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .mock-topbar {
+      display: flex; align-items: center; gap: .5rem;
+      margin-bottom: 1rem; padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mock-dot.red   { background: #FF5F57; }
+    .mock-dot.yellow{ background: #FEBC2E; }
+    .mock-dot.green { background: #28C840; }
+    .mock-title { color: rgba(255,255,255,.5); font-size: .75rem; margin-left: .5rem; }
+
+    .mock-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem;
+      margin-bottom: 1rem;
+    }
+
+    .mock-stat {
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius-sm);
+      padding: .75rem;
+      text-align: center;
+    }
+    .mock-stat .val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--gold);
+    }
+    .mock-stat .lbl {
+      font-size: .65rem;
+      color: rgba(255,255,255,.5);
+      margin-top: .15rem;
+    }
+
+    .mock-bar-row {
+      display: flex; flex-direction: column; gap: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .mock-bar-item {
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .mock-bar-label { color: rgba(255,255,255,.6); font-size: .7rem; width: 60px; flex-shrink: 0; }
+    .mock-bar-bg { flex: 1; height: 8px; background: rgba(255,255,255,.07); border-radius: 4px; overflow: hidden; }
+    .mock-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+
+    .mock-modules {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem;
+    }
+    .mock-module {
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius-sm);
+      padding: .6rem .4rem;
+      text-align: center;
+      transition: background .2s;
+    }
+    .mock-module:hover { background: rgba(201,149,76,.15); }
+    .mock-module .ico { font-size: 1.2rem; margin-bottom: .25rem; }
+    .mock-module .lbl { font-size: .6rem; color: rgba(255,255,255,.5); }
+
+    .hero-stats-bar {
+      display: flex; align-items: center; gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .hs-item { text-align: left; }
+    .hs-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .hs-lbl { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .hs-divider { width: 1px; height: 40px; background: rgba(255,255,255,.15); }
+
+    /* ── SECTIONS GENERIC ── */
+    section { padding: 100px 5%; }
+
+    .section-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.75rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      max-width: 640px;
+    }
+    .section-title em { color: var(--gold); font-style: normal; }
+
+    .section-sub {
+      color: var(--gray-500);
+      font-size: 1.05rem;
+      margin-top: 1rem;
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    .section-header { margin-bottom: 4rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-title { margin: 0 auto; }
+    .section-header.center .section-sub  { margin: 1rem auto 0; }
+
+    /* ── FEATURES ── */
+    #features { background: var(--gray-100); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--gray-200);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(11,22,40,.12); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .fc-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .fc-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+
+    .fc-desc { color: var(--gray-500); font-size: .9rem; line-height: 1.65; }
+
+    .fc-tags {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      margin-top: 1rem;
+    }
+    .fc-tag {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-pale);
+      padding: .2rem .6rem;
+      border-radius: 50px;
+    }
+
+    /* ── MODULES SHOWCASE ── */
+    #modules {
+      background: var(--navy);
+      color: var(--white);
+    }
+    #modules .section-title { color: var(--white); }
+    #modules .section-sub   { color: rgba(255,255,255,.6); }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .module-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .module-card:hover {
+      background: rgba(201,149,76,.08);
+      border-color: rgba(201,149,76,.3);
+      transform: translateY(-3px);
+    }
+
+    .module-card.extra {
+      border-color: rgba(201,149,76,.2);
+    }
+    .module-card.extra .module-badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,149,76,.15);
+      padding: .2rem .6rem;
+      border-radius: 50px;
+      margin-bottom: .75rem;
+    }
+
+    .module-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+    .module-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .module-desc { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+
+    /* ── INTEGRATIONS ── */
+    #integrations { background: var(--white); }
+
+    .integrations-logos {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .int-logo {
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.75rem;
+      transition: all .25s;
+      min-width: 100px;
+    }
+    .int-logo:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px rgba(201,149,76,.15);
+      transform: translateY(-2px);
+    }
+    .int-logo .il-icon { font-size: 2rem; }
+    .int-logo .il-name { font-size: .75rem; font-weight: 600; color: var(--gray-500); }
+
+    /* ── AI SECTION ── */
+    #ia {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+      color: var(--white);
+      position: relative; overflow: hidden;
+    }
+
+    .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+    .ia-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .ia-chat-mock {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .chat-header {
+      display: flex; align-items: center; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .chat-avatar {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; font-weight: 700; color: var(--navy);
+    }
+    .chat-name { font-weight: 600; font-size: .9rem; }
+    .chat-status { font-size: .72rem; color: var(--gold); }
+
+    .chat-messages { display: flex; flex-direction: column; gap: .75rem; }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: .65rem .9rem;
+      border-radius: 12px;
+      font-size: .82rem;
+      line-height: 1.5;
+      animation: fadeInUp .4s ease both;
+    }
+    .chat-msg.ai {
+      background: rgba(201,149,76,.15);
+      border: 1px solid rgba(201,149,76,.2);
+      color: rgba(255,255,255,.9);
+      align-self: flex-start;
+    }
+    .chat-msg.user {
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.8);
+      align-self: flex-end;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(10px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .ia-features { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .ia-feature {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem;
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .ia-feature .iaf-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .ia-feature h4 { font-weight: 600; font-size: .9rem; margin-bottom: .25rem; }
+    .ia-feature p  { font-size: .8rem; color: rgba(255,255,255,.55); }
+
+    /* ── MOBILE APP ── */
+    #app { background: var(--gray-100); }
+
+    .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+    .app-phone-wrap {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+
+    .app-phone {
+      width: 220px;
+      background: var(--navy);
+      border-radius: 36px;
+      border: 6px solid #1A2A44;
+      box-shadow: 0 32px 80px rgba(11,22,40,.25);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .app-phone-screen {
+      background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+      min-height: 420px;
+      padding: 1rem .75rem;
+    }
+
+    .phone-notch {
+      width: 60px; height: 18px;
+      background: #0B1628;
+      border-radius: 0 0 12px 12px;
+      margin: 0 auto .75rem;
+    }
+
+    .phone-status { display: flex; justify-content: space-between; margin-bottom: .75rem; }
+    .phone-status span { color: rgba(255,255,255,.5); font-size: .55rem; }
+
+    .phone-hero-text {
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .phone-sub { color: rgba(255,255,255,.5); font-size: .6rem; margin-bottom: 1rem; }
+
+    .phone-cards { display: flex; flex-direction: column; gap: .5rem; }
+    .phone-card {
+      background: rgba(255,255,255,.06);
+      border-radius: 10px;
+      padding: .65rem .75rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .phone-card .pci { font-size: 1rem; }
+    .phone-card .pct { font-size: .62rem; color: rgba(255,255,255,.7); }
+    .phone-card .pcv {
+      margin-left: auto;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .7rem;
+      color: var(--gold);
+    }
+
+    .phone-badge {
+      position: absolute;
+      top: -8px; right: -20px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: .65rem;
+      padding: .3rem .65rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .app-features-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .app-feature {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .app-feature .af-check {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy); font-size: .75rem; font-weight: 700;
+    }
+    .app-feature p { font-size: .9rem; color: var(--gray-700); }
+
+    /* ── TESTIMONIAL ── */
+    #testimonial {
+      background: var(--gold-pale);
+      text-align: center;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      width: 100%;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-card);
+      text-align: left;
+    }
+
+    .testimonial-quote {
+      font-size: 4rem;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      line-height: 1;
+      margin-bottom: .75rem;
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      color: var(--gray-700);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .ta-avatar {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-weight: 700; font-size: 1.1rem;
+    }
+    .ta-name { font-weight: 700; font-size: 1rem; color: var(--navy); }
+    .ta-role { font-size: .85rem; color: var(--gray-500); }
+
+    .testimonial-logos {
+      display: flex; align-items: center; gap: 1.5rem; justify-content: center;
+      margin-top: 3rem; flex-wrap: wrap;
+    }
+    .tl-tag {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 50px;
+      padding: .4rem 1.2rem;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--white); }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--gray-100);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: all .25s;
+    }
+    .pricing-card.featured {
+      background: var(--navy);
+      border-color: var(--gold);
+      color: var(--white);
+      transform: scale(1.03);
+    }
+    .pricing-card:hover { box-shadow: 0 16px 48px rgba(11,22,40,.12); }
+
+    .pricing-card .popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: .3rem 1rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .pc-plan { font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
+    .pc-price { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; margin-bottom: .25rem; }
+    .pc-price span { font-size: 1rem; font-weight: 400; }
+    .pc-desc { font-size: .85rem; color: var(--gray-500); margin-bottom: 2rem; }
+    .pricing-card.featured .pc-desc { color: rgba(255,255,255,.6); }
+
+    .pc-features { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-bottom: 2rem; }
+    .pc-features li { display: flex; align-items: center; gap: .65rem; font-size: .88rem; }
+    .pc-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    .pc-cta {
+      width: 100%;
+      padding: .85rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .9rem;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: all .25s;
+    }
+    .pc-cta.outlined {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+    }
+    .pc-cta.outlined:hover { background: var(--gold); color: var(--navy); }
+    .pc-cta.solid { background: var(--gold); color: var(--navy); }
+    .pc-cta.solid:hover { background: var(--gold-light); }
+
+    /* ── CTA ── */
+    #cta {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      text-align: center;
+      padding: 100px 5%;
+      position: relative; overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(201,149,76,.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .cta-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .cta-title em { color: var(--gold); font-style: normal; }
+    .cta-sub { color: rgba(255,255,255,.65); font-size: 1.05rem; margin-bottom: 2.5rem; }
+
+    /* ── CONTACT FORM ── */
+    #contacto { background: var(--white); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+    .contact-info-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .ci-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .ci-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--gold-pale);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .ci-label { font-size: .78rem; color: var(--gray-500); margin-bottom: .2rem; }
+    .ci-value { font-weight: 600; color: var(--navy); font-size: .95rem; }
+
+    .contact-form {
+      background: var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
+    .form-group label { font-size: .82rem; font-weight: 600; color: var(--navy); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: .75rem 1rem;
+      font-size: .9rem;
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      transition: border-color .2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,149,76,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      padding: .9rem;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .25s;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: var(--shadow-gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.6);
+      padding: 4rem 5% 2rem;
+    }
+
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+
+    .footer-brand .fb-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .footer-brand .fb-logo span { color: var(--gold); }
+    .footer-brand p { font-size: .85rem; line-height: 1.7; max-width: 280px; }
+
+    .footer-col h4 {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col ul a { color: rgba(255,255,255,.55); font-size: .85rem; text-decoration: none; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .8rem; }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner    { grid-template-columns: 1fr; text-align: center; }
+      .hero-visual   { display: none; }
+      .hero-actions  { justify-content: center; }
+      .hero-stats-bar{ justify-content: center; }
+      .ia-grid       { grid-template-columns: 1fr; }
+      .ia-visual     { display: none; }
+      .app-grid      { grid-template-columns: 1fr; }
+      .app-phone-wrap{ display: none; }
+      .contact-grid  { grid-template-columns: 1fr; }
+      .footer-grid   { grid-template-columns: 1fr 1fr; }
+      .nav-links     { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-bg-grid,
+      .hero-glow,
+      .hero-glow-2,
+      .cta-glow { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section     { padding: 64px 5%; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .form-row   { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: scale(1); }
+      .nav-logo   { font-size: 1.2rem; }
+      .nav-cta    { padding: .45rem .9rem; font-size: .76rem; white-space: nowrap; }
+      .hero-title { font-size: clamp(2rem, 11vw, 2.7rem); }
+      .hero-sub   { max-width: 100%; font-size: 1rem; }
+      .hero-stats-bar { gap: 1rem; }
+      .hs-num     { font-size: 1.4rem; }
+      .hs-lbl     { font-size: .72rem; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .testimonial-card { padding: 1.6rem; }
+      .testimonial-logos { gap: .75rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card .popular-badge { white-space: normal; max-width: calc(100% - 2rem); }
+      .topbar { font-size: .68rem; padding: .35rem 4%; }
+      .tb-full { display: none !important; }
+      .tb-short { display: inline !important; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NOTIFICATION BAR ── */
+    .topbar {
+      background: var(--gold);
+      color: var(--navy);
+      text-align: center;
+      padding: .55rem 5%;
+      font-size: .82rem;
+      font-weight: 600;
+      min-height: var(--topbar-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .topbar a { color: var(--navy); text-decoration: underline; }
+    .tb-short { display: none; }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      text-decoration: none;
+      transition: transform .25s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* ── VIDEO SECTION ── */
+    #video { background: var(--navy-mid); padding: 80px 5%; }
+    .video-inner { max-width: 900px; margin: 0 auto; }
+    .video-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--navy);
+      aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .video-placeholder {
+      text-align: center; color: rgba(255,255,255,.5);
+    }
+    .video-play-btn {
+      width: 72px; height: 72px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
+      cursor: pointer;
+      transition: transform .25s;
+    }
+    .video-play-btn:hover { transform: scale(1.1); }
+
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="tb-full">🚀 Sistema activo en producción con más de 9 módulos integrados — <a href="#contacto">Solicita tu demo gratuita</a></span>
+    <span class="tb-short">🚀 En producción — <a href="#contacto">Demo gratis</a></span>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Inmovi<span>soft</span></div>
+    <ul class="nav-links">
+      <li><a href="#features">Características</a></li>
+      <li><a href="#modules">Módulos</a></li>
+      <li><a href="#ia">IA Integrada</a></li>
+      <li><a href="#app">App Móvil</a></li>
+      <li><a href="#pricing">Planes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Solicitar Demo</a>
+    <div class="nav-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="dot"></div>
+          ERP Inmobiliario · Hecho en México
+        </div>
+        <h1 class="hero-title">
+          El sistema que tu<br/>
+          inmobiliaria necesita<br/>
+          <em>para escalar.</em>
+        </h1>
+        <p class="hero-sub">
+          Gestiona proyectos, ventas, contratos, cobranza, WhatsApp y mucho más desde una sola plataforma diseñada para desarrolladores inmobiliarios mexicanos.
+        </p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn-primary">
+            <span>Solicitar Demo Gratuita</span>
+            <span>→</span>
+          </a>
+          <a href="#modules" class="btn-ghost">
+            <span>▶</span>
+            <span>Ver módulos</span>
+          </a>
+        </div>
+        <div class="hero-stats-bar">
+          <div class="hs-item">
+            <div class="hs-num">12+</div>
+            <div class="hs-lbl">Módulos integrados</div>
+          </div>
+          <div class="hs-divider"></div>
+          <div class="hs-item">
+            <div class="hs-num">360°</div>
+            <div class="hs-lbl">Tours virtuales</div>
+          </div>
+          <div class="hs-divider"></div>
+          <div class="hs-item">
+            <div class="hs-num">IA</div>
+            <div class="hs-lbl">Agente inteligente</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD MOCK -->
+      <div class="hero-visual">
+        <div class="dashboard-mock">
+          <div class="mock-topbar">
+            <div class="mock-dot red"></div>
+            <div class="mock-dot yellow"></div>
+            <div class="mock-dot green"></div>
+            <div class="mock-title">Inmovisoft · Dashboard</div>
+          </div>
+          <div class="mock-stats">
+            <div class="mock-stat">
+              <div class="val">$4.2M</div>
+              <div class="lbl">Ventas mes</div>
+            </div>
+            <div class="mock-stat">
+              <div class="val">87</div>
+              <div class="lbl">Lotes activos</div>
+            </div>
+            <div class="mock-stat">
+              <div class="val">94%</div>
+              <div class="lbl">Cobranza</div>
+            </div>
+          </div>
+          <div class="mock-bar-row">
+            <div class="mock-bar-item">
+              <div class="mock-bar-label">Etapa A</div>
+              <div class="mock-bar-bg"><div class="mock-bar-fill" style="width:92%"></div></div>
+            </div>
+            <div class="mock-bar-item">
+              <div class="mock-bar-label">Etapa B</div>
+              <div class="mock-bar-bg"><div class="mock-bar-fill" style="width:68%"></div></div>
+            </div>
+            <div class="mock-bar-item">
+              <div class="mock-bar-label">Etapa C</div>
+              <div class="mock-bar-bg"><div class="mock-bar-fill" style="width:34%"></div></div>
+            </div>
+          </div>
+          <div class="mock-modules">
+            <div class="mock-module"><div class="ico">🏗️</div><div class="lbl">Obras</div></div>
+            <div class="mock-module"><div class="ico">💰</div><div class="lbl">Ventas</div></div>
+            <div class="mock-module"><div class="ico">📋</div><div class="lbl">Contratos</div></div>
+            <div class="mock-module"><div class="ico">💬</div><div class="lbl">WhatsApp</div></div>
+            <div class="mock-module"><div class="ico">📊</div><div class="lbl">Finanzas</div></div>
+            <div class="mock-module"><div class="ico">🤖</div><div class="lbl">IA</div></div>
+            <div class="mock-module"><div class="ico">📱</div><div class="lbl">App</div></div>
+            <div class="mock-module"><div class="ico">🗺️</div><div class="lbl">Tours 360°</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-header center reveal">
+      <div class="section-label">Por qué Inmovisoft</div>
+      <h2 class="section-title">Una plataforma. <em>Todo lo que necesitas.</em></h2>
+      <p class="section-sub">Diseñado desde cero para las necesidades reales de los desarrolladores inmobiliarios en México.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="fc-icon">🏠</div>
+        <div class="fc-title">Gestión completa de lotes</div>
+        <p class="fc-desc">Registra colindancias, imágenes, videos y vistas 3D. Controla el estatus de cada lote en tiempo real sincronizado con tu micrositio público.</p>
+        <div class="fc-tags"><span class="fc-tag">360° Virtual</span><span class="fc-tag">Tiempo real</span></div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="fc-icon">📄</div>
+        <div class="fc-title">Contratos automáticos</div>
+        <p class="fc-desc">Genera contratos desde plantillas globales o por proyecto. Firma digital integrada con DocuSign. El cliente firma desde cualquier dispositivo.</p>
+        <div class="fc-tags"><span class="fc-tag">DocuSign</span><span class="fc-tag">Automático</span></div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="fc-icon">💬</div>
+        <div class="fc-title">WhatsApp Business integrado</div>
+        <p class="fc-desc">Bot conversacional, flows automatizados, envío de documentos e imágenes. Todo desde el sistema, sin cambiar de aplicación.</p>
+        <div class="fc-tags"><span class="fc-tag">Bot IA</span><span class="fc-tag">Meta</span></div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="fc-icon">🧾</div>
+        <div class="fc-title">Facturación electrónica (CFDI)</div>
+        <p class="fc-desc">Timbrado directo con PAC, facturas a clientes y público en general, notas de crédito. Cumplimiento fiscal 100% integrado.</p>
+        <div class="fc-tags"><span class="fc-tag">SAT</span><span class="fc-tag">PAC</span></div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="fc-icon">🤖</div>
+        <div class="fc-title">Agente de IA propio</div>
+        <p class="fc-desc">Asistente inteligente dentro del sistema para consultas operativas, pre-calificación de prospectos y automatización de tareas repetitivas.</p>
+        <div class="fc-tags"><span class="fc-tag">Claude AI</span><span class="fc-tag">MCP</span></div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="fc-icon">📱</div>
+        <div class="fc-title">App móvil nativa</div>
+        <p class="fc-desc">Funciona offline, con GPS, sincronización automática, muro social, cotizaciones y registro de obra desde el campo.</p>
+        <div class="fc-tags"><span class="fc-tag">iOS & Android</span><span class="fc-tag">Offline</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section id="modules">
+    <div class="section-header center reveal">
+      <div class="section-label">Módulos del sistema</div>
+      <h2 class="section-title" style="color:#fff;">Todo en uno. <em>Sin pagar extras.</em></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.6);">Más de 12 módulos integrados en una sola plataforma cohesionada. Lo que otros cobran por separado, aquí viene incluido.</p>
+    </div>
+
+    <div class="modules-grid">
+
+      <!-- Módulos base -->
+      <div class="module-card reveal">
+        <div class="module-icon">🏗️</div>
+        <div class="module-name">Proyectos y Obras</div>
+        <p class="module-desc">Control completo de proyectos de lotificación, tareas, avances por etapa, bitácora fotográfica y reportes desde app móvil.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">💼</div>
+        <div class="module-name">Ventas de Terrenos</div>
+        <p class="module-desc">Cotizaciones, financiamiento, tabla de amortización, gestión de enganche y mensualidades. El módulo más robusto del sistema.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">💰</div>
+        <div class="module-name">Caja y Finanzas</div>
+        <p class="module-desc">Flujo de efectivo por proyecto, cajas con apertura y cierre, cuentas bancarias, ingresos, egresos y programación de pagos.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">🧺</div>
+        <div class="module-name">Almacén y Compras</div>
+        <p class="module-desc">Inventario por sucursal, requisiciones, órdenes de compra con aprobación, catálogo de proveedores y productos.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">👥</div>
+        <div class="module-name">Recursos Humanos</div>
+        <p class="module-desc">Nómina, comisiones, niveles de asesores (Jr/Sr/Master/Socio), metas, reclutamiento y checador con geolocalización.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">📊</div>
+        <div class="module-name">Dashboard e Indicadores</div>
+        <p class="module-desc">Widgets de resumen operativo, KPIs de ventas, morosidad, proyectos activos y rentabilidad. Reportería exportable.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">🌐</div>
+        <div class="module-name">Micrositio Público</div>
+        <p class="module-desc">Sitio web de ventas con tours 360°, visualización interactiva de lotes, cotizador dinámico y apartado en línea. PWA nativa.</p>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon">💬</div>
+        <div class="module-name">WhatsApp y Mensajería</div>
+        <p class="module-desc">Bot conversacional, flows automáticos, bandeja de mensajes, chat interno y notificaciones push en tiempo real.</p>
+      </div>
+
+      <!-- Módulos extra -->
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">✍️</div>
+        <div class="module-name">Firma Electrónica DocuSign</div>
+        <p class="module-desc">Firma de contratos digitalmente desde el sistema, sin salir de la plataforma. Completamente integrado.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">🤖</div>
+        <div class="module-name">Agente de IA (Setter)</div>
+        <p class="module-desc">Pre-calificación automática de prospectos con IA. Comunicación con el CRM para asignar oportunidades al equipo comercial.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">📲</div>
+        <div class="module-name">App Móvil Nativa</div>
+        <p class="module-desc">iOS y Android. Funciona offline con sincronización, GPS, cotizaciones, muro social y registro de obra desde campo.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">🎯</div>
+        <div class="module-name">CRM con Oportunidades</div>
+        <p class="module-desc">Alertas en tiempo real de oportunidades de venta, seguimiento de prospectos y gestión del pipeline comercial.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">🗓️</div>
+        <div class="module-name">Planeación tipo SCRUM</div>
+        <p class="module-desc">Epics, Sprints y Tareas para gestión interna de proyectos. Similar a Jira/Trello pero integrado al ERP.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">🧾</div>
+        <div class="module-name">Facturación Electrónica</div>
+        <p class="module-desc">CFDI 4.0, timbrado con PAC, notas de crédito, facturas a clientes y público en general. 100% SAT.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">📡</div>
+        <div class="module-name">Integración Meta</div>
+        <p class="module-desc">Recepción de mensajes de Facebook e Instagram directamente en el sistema a través de webhooks activos.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- IA SECTION -->
+  <section id="ia">
+    <div class="ia-grid">
+      <div class="ia-visual">
+        <div class="ia-chat-mock">
+          <div class="chat-header">
+            <div class="chat-avatar">IA</div>
+            <div>
+              <div class="chat-name">Asistente Inmovisoft</div>
+              <div class="chat-status">● En línea ahora</div>
+            </div>
+          </div>
+          <div class="chat-messages">
+            <div class="chat-msg user">¿Cuántos lotes disponibles hay en Etapa B?</div>
+            <div class="chat-msg ai">En Etapa B quedan <strong>14 lotes disponibles</strong>. Los de mayor precio son los de vista al mar, a partir de $380,000. ¿Te muestro las cotizaciones?</div>
+            <div class="chat-msg user">Sí, y dime qué prospectos contacté esta semana</div>
+            <div class="chat-msg ai">Esta semana contactaste <strong>23 prospectos</strong>: 8 en seguimiento, 4 con cotización enviada y 2 en proceso de cierre. ¿Quieres preparar los contratos?</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-label">Inteligencia Artificial</div>
+        <h2 class="section-title" style="color:#fff;">Tu equipo tiene un <em>asistente 24/7.</em></h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.6);">Inmovisoft incluye un agente de IA entrenado en los datos de tu negocio, que responde preguntas, pre-califica prospectos y automatiza tareas operativas.</p>
+        <div class="ia-features">
+          <div class="ia-feature">
+            <div class="iaf-icon">🔍</div>
+            <div>
+              <h4>Consultas operativas en lenguaje natural</h4>
+              <p>Pregunta sobre lotes, prospectos, pagos pendientes o avance de obras sin abrir reportes.</p>
+            </div>
+          </div>
+          <div class="ia-feature">
+            <div class="iaf-icon">🎯</div>
+            <div>
+              <h4>Pre-calificación automática de prospectos</h4>
+              <p>El agente Setter conversa con tus leads por WhatsApp y los filtra antes de pasarlos al asesor.</p>
+            </div>
+          </div>
+          <div class="ia-feature">
+            <div class="iaf-icon">⚡</div>
+            <div>
+              <h4>Herramientas MCP para IA externas</h4>
+              <p>Conecta tu propia IA externa al sistema mediante el protocolo MCP para ampliar las capacidades.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP MÓVIL -->
+  <section id="app">
+    <div class="app-grid">
+      <div class="reveal">
+        <div class="section-label">Aplicación Móvil</div>
+        <h2 class="section-title">Tu equipo en campo,<br/><em>siempre conectado.</em></h2>
+        <p class="section-sub">La app nativa de Inmovisoft permite a asesores y supervisores de obra operar desde cualquier lugar, con o sin internet.</p>
+        <div class="app-features-list">
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Cotizaciones y ventas desde el teléfono</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Registro de avance de obra con fotos</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Checador de asistencia con geolocalización y QR</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Muro social interno del equipo</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Modo offline con sincronización automática</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Disponible en iOS y Android</p>
+          </div>
+        </div>
+      </div>
+      <div class="app-phone-wrap">
+        <div style="position:relative">
+          <div class="app-phone">
+            <div class="app-phone-screen">
+              <div class="phone-notch"></div>
+              <div class="phone-status">
+                <span>9:41</span>
+                <span>●●● 100%</span>
+              </div>
+              <div class="phone-hero-text">Buenos días, Carlos 👋</div>
+              <div class="phone-sub">Tienes 3 prospectos pendientes hoy</div>
+              <div class="phone-cards">
+                <div class="phone-card">
+                  <div class="pci">💼</div>
+                  <div class="pct">Cotizaciones hoy</div>
+                  <div class="pcv">+5</div>
+                </div>
+                <div class="phone-card">
+                  <div class="pci">📍</div>
+                  <div class="pct">Visitas agendadas</div>
+                  <div class="pcv">2</div>
+                </div>
+                <div class="phone-card">
+                  <div class="pci">💰</div>
+                  <div class="pct">Mi comisión estimada</div>
+                  <div class="pcv">$18,400</div>
+                </div>
+                <div class="phone-card">
+                  <div class="pci">🏗️</div>
+                  <div class="pct">Avance Etapa B</div>
+                  <div class="pcv">68%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-badge">App Nativa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS -->
+  <section id="integrations">
+    <div class="section-header center reveal">
+      <div class="section-label">Integraciones</div>
+      <h2 class="section-title">Conectado con las herramientas<br/><em>que ya usas.</em></h2>
+    </div>
+    <div class="integrations-logos">
+      <div class="int-logo">
+        <div class="il-icon">💬</div>
+        <div class="il-name">WhatsApp Business</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">✍️</div>
+        <div class="il-name">DocuSign</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">🧾</div>
+        <div class="il-name">SAT / PAC</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">📘</div>
+        <div class="il-name">Meta / Facebook</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">📸</div>
+        <div class="il-name">Instagram</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">💳</div>
+        <div class="il-name">Stripe / Bancos</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">🗺️</div>
+        <div class="il-name">Tours 360°</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">🚗</div>
+        <div class="il-name">Traccar GPS</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">🤖</div>
+        <div class="il-name">Claude AI / MCP</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">📧</div>
+        <div class="il-name">Email</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section id="testimonial">
+    <div class="section-label" style="display:block;text-align:center;margin-bottom:2rem">Casos de éxito</div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          Inmovisoft transformó completamente nuestra operación. Pasamos de manejar contratos en Excel y WhatsApp manual a tener todo automatizado: cotizaciones, firmas digitales, cobranza y hasta un agente de IA que pre-califica a nuestros prospectos. Es la plataforma más completa que hemos visto en el mercado inmobiliario mexicano.
+        </p>
+        <div class="testimonial-author">
+          <div class="ta-avatar">5K</div>
+          <div>
+            <div class="ta-name">Gerencia General</div>
+            <div class="ta-role">Grupo 5K · Desarrollador Inmobiliario</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          Con Inmovisoft dejamos de perder seguimiento entre asesores. Ahora cada lead entra al CRM, se asigna automáticamente y medimos conversiones por etapa. En 4 meses subimos 32% la colocación y redujimos errores de contrato casi a cero.
+        </p>
+        <div class="testimonial-author">
+          <div class="ta-avatar">IC</div>
+          <div>
+            <div class="ta-name">Dirección Comercial</div>
+            <div class="ta-role">Inmuebles Coral · Agencia inmobiliaria</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          Antes llevaba mi operación con hojas sueltas y recordatorios manuales. Hoy tengo panel diario de cobranza, estatus de escrituras y tareas por ejecutivo en un solo lugar. Me dio claridad para crecer sin perder control del negocio.
+        </p>
+        <div class="testimonial-author">
+          <div class="ta-avatar">OR</div>
+          <div>
+            <div class="ta-name">Omar Ramírez</div>
+            <div class="ta-role">Director General · Broker independiente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-logos">
+      <div class="tl-tag">✅ Sistema en producción</div>
+      <div class="tl-tag">✅ Más de 87 lotes gestionados</div>
+      <div class="tl-tag">✅ App móvil activa</div>
+      <div class="tl-tag">✅ WhatsApp Bot operando</div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-header center reveal">
+      <div class="section-label">Planes</div>
+      <h2 class="section-title">Invierte en tecnología.<br/><em>Vende más, opera mejor.</em></h2>
+      <p class="section-sub">Cada plan incluye implementación, capacitación y soporte. Sin sorpresas.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pc-plan">Starter</div>
+        <div class="pc-price">A consultar</div>
+        <div class="pc-desc">Para inmobiliarias que inician su digitalización</div>
+        <ul class="pc-features">
+          <li>Módulo de Ventas y Lotes</li>
+          <li>Micrositio público</li>
+          <li>Generación de contratos</li>
+          <li>Cobranza básica</li>
+          <li>WhatsApp integrado</li>
+          <li>App móvil</li>
+          <li>Soporte por email</li>
+        </ul>
+        <a href="#contacto" class="pc-cta outlined">Consultar precio</a>
+      </div>
+
+      <div class="pricing-card featured reveal">
+        <div class="popular-badge">Más popular</div>
+        <div class="pc-plan">Business</div>
+        <div class="pc-price" style="color:var(--gold)">A consultar</div>
+        <div class="pc-desc">Para desarrolladores inmobiliarios en crecimiento</div>
+        <ul class="pc-features">
+          <li>Todo lo de Starter</li>
+          <li>Módulo de Proyectos y Obras</li>
+          <li>Recursos Humanos completo</li>
+          <li>Caja y Finanzas</li>
+          <li>Facturación electrónica CFDI</li>
+          <li>Firma digital DocuSign</li>
+          <li>Agente de IA integrado</li>
+          <li>Tours 360° virtuales</li>
+          <li>CRM con oportunidades</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <a href="#contacto" class="pc-cta solid">Solicitar Demo</a>
+      </div>
+
+      <div class="pricing-card reveal">
+        <div class="pc-plan">Enterprise</div>
+        <div class="pc-price">A medida</div>
+        <div class="pc-desc">Para grupos inmobiliarios con múltiples proyectos</div>
+        <ul class="pc-features">
+          <li>Todo lo de Business</li>
+          <li>Almacén y Compras avanzado</li>
+          <li>Módulos a medida</li>
+          <li>Integración Meta/Instagram</li>
+          <li>GPS vehicular Traccar</li>
+          <li>Agente Setter IA avanzado</li>
+          <li>Servidor dedicado</li>
+          <li>Capacitación in-situ</li>
+          <li>SLA garantizado</li>
+        </ul>
+        <a href="#contacto" class="pc-cta outlined">Hablar con un asesor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-glow"></div>
+    <div class="cta-inner reveal">
+      <h2 class="cta-title">¿Listo para digitalizar<br/>tu <em>inmobiliaria</em>?</h2>
+      <p class="cta-sub">Agenda una demo gratuita y te mostramos el sistema funcionando con datos reales. Sin compromiso.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="#contacto" class="btn-primary">Agendar Demo Gratuita →</a>
+        <a href="https://wa.me/5219999999999" class="btn-ghost">💬 Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="section-label">Contáctanos</div>
+        <h2 class="section-title">Hablemos de tu<br/><em>próximo proyecto.</em></h2>
+        <p class="section-sub">Nuestro equipo de especialistas está listo para analizar tu operación y mostrarte cómo Inmovisoft puede transformarla.</p>
+
+        <div class="contact-info-list">
+          <div class="ci-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">Correo electrónico</div>
+              <div class="ci-value">hola@inmovisoft.mx</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">💬</div>
+            <div>
+              <div class="ci-label">WhatsApp directo</div>
+              <div class="ci-value">+52 (999) 000-0000</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">🏢</div>
+            <div>
+              <div class="ci-label">Desarrollado por</div>
+              <div class="ci-value">Xquenda · Desarrollo de Software</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">⏰</div>
+            <div>
+              <div class="ci-label">Horario de atención</div>
+              <div class="ci-value">Lunes a Viernes · 9:00 – 18:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:1.5rem;font-size:1.1rem;">Solicita tu Demo Gratuita</h3>
+        <form onsubmit="handleForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label>Empresa</label>
+              <input type="text" placeholder="Nombre de tu inmobiliaria" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Teléfono / WhatsApp</label>
+              <input type="tel" placeholder="+52 (999) 000-0000" required />
+            </div>
+            <div class="form-group">
+              <label>Correo electrónico</label>
+              <input type="email" placeholder="correo@empresa.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>¿Cuántos proyectos activos manejas?</label>
+            <select>
+              <option value="">Seleccionar...</option>
+              <option>1 proyecto</option>
+              <option>2 – 5 proyectos</option>
+              <option>Más de 5 proyectos</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>¿Qué necesitas mejorar principalmente?</label>
+            <textarea placeholder="Cuéntanos tu principal reto operativo: ventas, cobranza, obra, comunicación con clientes..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar solicitud de demo →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-logo">Inmovi<span>soft</span></div>
+        <p>El ERP inmobiliario más completo de México. Gestiona todo tu ciclo comercial y operativo desde una sola plataforma.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#modules">Módulos</a></li>
+          <li><a href="#ia">IA Integrada</a></li>
+          <li><a href="#app">App Móvil</a></li>
+          <li><a href="#integrations">Integraciones</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre Xquenda</a></li>
+          <li><a href="#">Casos de éxito</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Aviso de Privacidad</a></li>
+          <li><a href="#">Términos de Servicio</a></li>
+          <li><a href="#">Política de Datos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Inmovisoft · Desarrollado por <a href="#">Xquenda</a>. Todos los derechos reservados.</p>
+      <p>Hecho con ❤️ en México 🇲🇽</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5219999999999" class="wa-float" title="Escríbenos por WhatsApp">💬</a>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Stagger children in grids
+    document.querySelectorAll('.features-grid, .modules-grid').forEach(grid => {
+      grid.querySelectorAll('.reveal').forEach((card, i) => {
+        card.style.transitionDelay = `${i * 80}ms`;
+      });
+    });
+
+    // Form handler
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✅ ¡Solicitud enviada! Te contactaremos pronto.';
+      btn.style.background = '#28a745';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+    }
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.style.background = 'rgba(11,22,40,.98)';
+      } else {
+        nav.style.background = 'rgba(11,22,40,.92)';
+      }
+    });
+
+    // Hamburger menu (mobile)
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+      } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '72px';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.background = 'rgba(11,22,40,.98)';
+        navLinks.style.padding = '1.5rem 5%';
+        navLinks.style.gap = '1.25rem';
+        navLinks.style.borderBottom = '1px solid rgba(201,149,76,.2)';
+      }
+    });
+  </script>
+</body>
+</html>
