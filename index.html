@@ -796,6 +796,7 @@
       text-underline-offset: 3px; opacity: .85; transition: opacity .2s;
     }
     .pc-impl-btn:hover { opacity: 1; }
+    .pricing-card.featured .pc-impl-btn { opacity: 1; }
 
     /* ── Modal ── */
     .modal-overlay {
@@ -1130,6 +1131,69 @@
     }
     .video-play-btn:hover { transform: scale(1.1); }
 
+    /* ── Plataformas ── */
+    #plataformas { background: var(--white); }
+    .plataformas-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .plataforma-card {
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem; transition: box-shadow .25s;
+    }
+    .plataforma-card:hover { box-shadow: 0 12px 40px rgba(11,22,40,.09); }
+    .plat-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .plat-icon.admin { background: #e8f4fd; }
+    .plat-icon.web   { background: #e8fdf0; }
+    .plat-icon.movil { background: #fdf6e8; }
+    .plat-label { font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+    .plat-name  { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+    .plat-desc  { font-size: .84rem; color: var(--gray-500); line-height: 1.6; margin-bottom: 1.25rem; border-bottom: 1px solid var(--gray-200); padding-bottom: 1.25rem; }
+    .plat-modules { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+    .plat-modules li { font-size: .82rem; color: #374151; display: flex; align-items: center; gap: .5rem; }
+    .plat-modules li::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* ── Flujo del negocio ── */
+    #flujo { background: var(--gray-100); }
+    .flujo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; max-width: 1100px; margin: 0 auto;
+    }
+    .flujo-step {
+      background: var(--white); border-radius: var(--radius-lg);
+      border: 1.5px solid var(--gray-200); padding: 1.5rem;
+      position: relative; transition: box-shadow .25s;
+    }
+    .flujo-step:hover { box-shadow: 0 10px 32px rgba(11,22,40,.09); }
+    .flujo-step.wip { opacity: .75; }
+    .flujo-wip-badge {
+      position: absolute; top: -10px; right: 1rem;
+      background: #f59e0b; color: #fff; font-size: .65rem; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase; padding: .2rem .65rem;
+      border-radius: 50px;
+    }
+    .flujo-step-num {
+      font-size: .65rem; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: .6rem;
+    }
+    .flujo-step-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+    .flujo-step-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--navy); margin-bottom: .5rem; }
+    .flujo-step-desc { font-size: .8rem; color: var(--gray-500); line-height: 1.55; margin-bottom: .85rem; }
+    .flujo-step-tools { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+    .flujo-step-tools li { font-size: .78rem; color: #374151; display: flex; align-items: center; gap: .45rem; }
+    .flujo-step-tools li::before { content: '·'; color: var(--gold); font-weight: 900; font-size: 1.1rem; line-height: 0; }
+    @media (max-width: 768px) {
+      .flujo-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .flujo-grid { grid-template-columns: 1fr; }
+      .plataformas-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── Modal contrato ── */
     .contrato-modal-card { max-width: 820px !important; }
 
@@ -1193,7 +1257,7 @@
 
   <!-- TOP BAR -->
   <div class="topbar">
-    <span class="tb-full">🚀 Sistema activo en producción con más de 9 módulos integrados — <a href="#contacto">Solicita tu demo gratuita</a></span>
+    <span class="tb-full">🚀 Sistema activo en producción con más de 16 módulos integrados — <a href="#contacto">Solicita tu demo gratuita</a></span>
     <span class="tb-short">🚀 En producción — <a href="#contacto">Demo gratis</a></span>
   </div>
 
@@ -1202,8 +1266,9 @@
     <div class="nav-logo">Inmovi<span>soft</span></div>
     <ul class="nav-links">
       <li><a href="#features">Características</a></li>
+      <li><a href="#plataformas">Plataformas</a></li>
       <li><a href="#modules">Módulos</a></li>
-      <li><a href="#ia">IA Integrada</a></li>
+      <li><a href="#flujo">Flujo comercial</a></li>
       <li><a href="#app">App Móvil</a></li>
       <li><a href="#pricing">Planes</a></li>
       <li><a href="#contacto">Contacto</a></li>
@@ -1361,6 +1426,67 @@
     </div>
   </section>
 
+  <!-- PLATAFORMAS -->
+  <section id="plataformas">
+    <div class="section-header center reveal">
+      <div class="section-label">El ecosistema</div>
+      <h2 class="section-title">3 plataformas.<br/><em>Una sola operación.</em></h2>
+      <p class="section-sub">Inmovisoft opera sobre tres plataformas interconectadas que cubren el ciclo digital completo de tu negocio inmobiliario.</p>
+    </div>
+    <div class="plataformas-grid">
+
+      <div class="plataforma-card reveal">
+        <div class="plat-icon admin">🖥️</div>
+        <div class="plat-label">Panel Operativo</div>
+        <div class="plat-name">Xquenda-Admin</div>
+        <p class="plat-desc">Centro de operaciones web para el equipo interno: ventas, cobranza, clientes, finanzas y recursos humanos.</p>
+        <ul class="plat-modules">
+          <li>Ventas de Lotes y Cotizador</li>
+          <li>Clientes & Cobranza</li>
+          <li>Proyectos & Lotes</li>
+          <li>Compras e Inventario</li>
+          <li>Caja y Finanzas</li>
+          <li>Recursos Humanos</li>
+          <li>Analítica & Reportes</li>
+          <li>Configuración y Roles</li>
+        </ul>
+      </div>
+
+      <div class="plataforma-card reveal">
+        <div class="plat-icon web">🌐</div>
+        <div class="plat-label">Sitio Web & Micrositios</div>
+        <div class="plat-name">Xquenda-Web</div>
+        <p class="plat-desc">Presencia digital pública con micrositio por proyecto: catálogo de lotes, galería y captación de prospectos.</p>
+        <ul class="plat-modules">
+          <li>Sitio web corporativo</li>
+          <li>Micrositio por proyecto</li>
+          <li>Catálogo de lotes interactivo</li>
+          <li>Galería de imágenes y renders</li>
+          <li>Formulario de captación de prospectos</li>
+          <li>Tours 360° integrados</li>
+          <li>Cotizador dinámico en línea</li>
+        </ul>
+      </div>
+
+      <div class="plataforma-card reveal">
+        <div class="plat-icon movil">📱</div>
+        <div class="plat-label">App de Campo</div>
+        <div class="plat-name">Xquenda-Móvil</div>
+        <p class="plat-desc">App móvil para asesores en terreno: cotizador, oportunidades y avance de obra con soporte offline.</p>
+        <ul class="plat-modules">
+          <li>Cotizador offline</li>
+          <li>Mis oportunidades (pipeline)</li>
+          <li>Avance de obra por etapa</li>
+          <li>Reportes fotográficos geolocalizados</li>
+          <li>Check-in de visitas con GPS</li>
+          <li>Muro social interno</li>
+          <li>Notificaciones push en tiempo real</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- MODULES -->
   <section id="modules">
     <div class="section-header center reveal">
@@ -1381,13 +1507,13 @@
       <div class="module-card reveal">
         <div class="module-icon">💼</div>
         <div class="module-name">Ventas de Terrenos</div>
-        <p class="module-desc">Cotizaciones, financiamiento, tabla de amortización, gestión de enganche y mensualidades. El módulo más robusto del sistema.</p>
+        <p class="module-desc">Pipeline completo: cotizaciones, apartado en línea, tabla de amortización, gestión de enganche, mensualidades y cierre con firma digital.</p>
       </div>
 
       <div class="module-card reveal">
         <div class="module-icon">💰</div>
-        <div class="module-name">Caja y Finanzas</div>
-        <p class="module-desc">Flujo de efectivo por proyecto, cajas con apertura y cierre, cuentas bancarias, ingresos, egresos y programación de pagos.</p>
+        <div class="module-name">Clientes, Cobranza y Finanzas</div>
+        <p class="module-desc">Expediente del cliente con historial de compras, plan de mensualidades con recordatorios automáticos, reestructuras de pagos y flujo de efectivo por proyecto.</p>
       </div>
 
       <div class="module-card reveal">
@@ -1399,13 +1525,13 @@
       <div class="module-card reveal">
         <div class="module-icon">👥</div>
         <div class="module-name">Recursos Humanos</div>
-        <p class="module-desc">Nómina, comisiones, niveles de asesores (Jr/Sr/Master/Socio), metas, reclutamiento y checador con geolocalización.</p>
+        <p class="module-desc">Colaboradores, contratos laborales, nómina con recibos digitales, comisiones, niveles de asesores, reclutamiento y checador con geolocalización.</p>
       </div>
 
       <div class="module-card reveal">
         <div class="module-icon">📊</div>
-        <div class="module-name">Dashboard e Indicadores</div>
-        <p class="module-desc">Widgets de resumen operativo, KPIs de ventas, morosidad, proyectos activos y rentabilidad. Reportería exportable.</p>
+        <div class="module-name">Analítica & Reportes</div>
+        <p class="module-desc">Dashboard con ventas del día, semana y mes por proyecto y asesor. Avance de comercialización, tasa de conversión de cotizaciones a ventas e indicadores personalizados por usuario.</p>
       </div>
 
       <div class="module-card reveal">
@@ -1429,7 +1555,6 @@
       </div>
 
       <div class="module-card extra reveal">
-        <span class="module-badge">➕ Incluido sin costo extra</span>
         <div class="module-icon">🤖</div>
         <div class="module-name">Agente de IA (Setter)</div>
         <p class="module-desc">Pre-calificación automática de prospectos con IA. Comunicación con el CRM para asignar oportunidades al equipo comercial.</p>
@@ -1443,31 +1568,46 @@
       </div>
 
       <div class="module-card extra reveal">
-        <span class="module-badge">➕ Incluido sin costo extra</span>
         <div class="module-icon">🎯</div>
         <div class="module-name">CRM con Oportunidades</div>
         <p class="module-desc">Alertas en tiempo real de oportunidades de venta, seguimiento de prospectos y gestión del pipeline comercial.</p>
       </div>
 
       <div class="module-card extra reveal">
-        <span class="module-badge">➕ Incluido sin costo extra</span>
         <div class="module-icon">🗓️</div>
         <div class="module-name">Planeación tipo SCRUM</div>
-        <p class="module-desc">Epics, Sprints y Tareas para gestión interna de proyectos. Similar a Jira/Trello pero integrado al ERP.</p>
+        <p class="module-desc">Épicas, Sprints, Kanban y Tareas para gestión interna. Sincronización con Google Calendar. Similar a Jira/Trello pero integrado al ERP.</p>
       </div>
 
       <div class="module-card extra reveal">
-        <span class="module-badge">➕ Incluido sin costo extra</span>
         <div class="module-icon">🧾</div>
         <div class="module-name">Facturación Electrónica</div>
         <p class="module-desc">CFDI 4.0, timbrado con PAC, notas de crédito, facturas a clientes y público en general. 100% SAT.</p>
       </div>
 
       <div class="module-card extra reveal">
-        <span class="module-badge">➕ Incluido sin costo extra</span>
         <div class="module-icon">📡</div>
         <div class="module-name">Integración Meta</div>
         <p class="module-desc">Recepción de mensajes de Facebook e Instagram directamente en el sistema a través de webhooks activos.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <span class="module-badge">➕ Incluido sin costo extra</span>
+        <div class="module-icon">🪪</div>
+        <div class="module-name">Tarjetas Virtuales de Asesores</div>
+        <p class="module-desc">Tarjeta digital personalizada por asesor con datos de contacto, portafolio de proyectos y enlace directo al cotizador. Compartible desde WhatsApp.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <div class="module-icon">📣</div>
+        <div class="module-name">Muro Social Interno</div>
+        <p class="module-desc">Feed corporativo para compartir noticias, logros y comunicados con el equipo. Accesible desde web y app móvil.</p>
+      </div>
+
+      <div class="module-card extra reveal">
+        <div class="module-icon">🖥️</div>
+        <div class="module-name">Escritorio Personalizable</div>
+        <p class="module-desc">Pantalla de inicio configurable con widgets de acceso rápido a las secciones más usadas por cada usuario.</p>
       </div>
 
     </div>
@@ -1547,6 +1687,14 @@
           <div class="app-feature">
             <div class="af-check">✓</div>
             <p>Muro social interno del equipo</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Mis oportunidades — pipeline personal del asesor</p>
+          </div>
+          <div class="app-feature">
+            <div class="af-check">✓</div>
+            <p>Check-in de visitas con GPS, fecha y notas de campo</p>
           </div>
           <div class="app-feature">
             <div class="af-check">✓</div>
@@ -1646,6 +1794,14 @@
         <div class="il-icon">📧</div>
         <div class="il-name">Email</div>
       </div>
+      <div class="int-logo">
+        <div class="il-icon">💬</div>
+        <div class="il-name">Tawk (Chat web)</div>
+      </div>
+      <div class="int-logo">
+        <div class="il-icon">📅</div>
+        <div class="il-name">Google Calendar</div>
+      </div>
     </div>
   </section>
 
@@ -1659,10 +1815,10 @@
           Inmovisoft transformó completamente nuestra operación. Pasamos de manejar contratos en Excel y WhatsApp manual a tener todo automatizado: cotizaciones, firmas digitales, cobranza y hasta un agente de IA que pre-califica a nuestros prospectos. Es la plataforma más completa que hemos visto en el mercado inmobiliario mexicano.
         </p>
         <div class="testimonial-author">
-          <div class="ta-avatar">5K</div>
+          <div class="ta-avatar">Xquenda</div>
           <div>
             <div class="ta-name">Gerencia General</div>
-            <div class="ta-role">Grupo 5K · Desarrollador Inmobiliario</div>
+            <div class="ta-role">Xquenda · Soluciones Tecnológicas</div>
           </div>
         </div>
       </div>
@@ -1697,6 +1853,96 @@
     </div>
   </section>
 
+  <!-- FLUJO DEL NEGOCIO -->
+  <section id="flujo">
+    <div class="section-header center reveal">
+      <div class="section-label">Flujo del negocio</div>
+      <h2 class="section-title">El sistema acompaña<br/><em>cada etapa de la venta.</em></h2>
+      <p class="section-sub">Desde que llega el primer prospecto hasta la cobranza mensual, Inmovisoft cubre todo el ciclo sin fricciones.</p>
+    </div>
+    <div class="flujo-grid">
+
+      <div class="flujo-step reveal">
+        <div class="flujo-step-num">Paso 1</div>
+        <div class="flujo-step-icon">🎯</div>
+        <div class="flujo-step-title">Captación</div>
+        <p class="flujo-step-desc">Prospectos ingresan vía múltiples canales digitales hacia el CRM de forma automática.</p>
+        <ul class="flujo-step-tools">
+          <li>Sitio web y micrositios</li>
+          <li>Meta Ads (Facebook & Instagram)</li>
+          <li>WhatsApp Business</li>
+          <li>Formularios de contacto</li>
+        </ul>
+      </div>
+
+      <div class="flujo-step reveal">
+        <div class="flujo-step-num">Paso 2</div>
+        <div class="flujo-step-icon">📋</div>
+        <div class="flujo-step-title">Cotización</div>
+        <p class="flujo-step-desc">El asesor genera una cotización completa con lote, enganche y plan de mensualidades en minutos.</p>
+        <ul class="flujo-step-tools">
+          <li>Cotizador por proyecto</li>
+          <li>Tour virtual integrado</li>
+          <li>App móvil (funciona sin internet)</li>
+          <li>Tarjeta virtual del asesor</li>
+        </ul>
+      </div>
+
+      <div class="flujo-step reveal">
+        <div class="flujo-step-num">Paso 3</div>
+        <div class="flujo-step-icon">🤝</div>
+        <div class="flujo-step-title">Apartado</div>
+        <p class="flujo-step-desc">El cliente reserva el lote y firma el contrato digitalmente desde cualquier dispositivo.</p>
+        <ul class="flujo-step-tools">
+          <li>Firma electrónica DocuSign</li>
+          <li>Anticipo de reserva registrado</li>
+          <li>Contrato digital generado</li>
+          <li>CRM actualizado automáticamente</li>
+        </ul>
+      </div>
+
+      <div class="flujo-step reveal">
+        <div class="flujo-step-num">Paso 4</div>
+        <div class="flujo-step-icon">✅</div>
+        <div class="flujo-step-title">Venta</div>
+        <p class="flujo-step-desc">Se registra la venta, se asigna el plan de pagos y se genera el expediente del cliente.</p>
+        <ul class="flujo-step-tools">
+          <li>Expediente completo del cliente</li>
+          <li>Plan de mensualidades asignado</li>
+          <li>Registro en caja</li>
+          <li>Facturación electrónica CFDI</li>
+        </ul>
+      </div>
+
+      <div class="flujo-step reveal">
+        <div class="flujo-step-num">Paso 5</div>
+        <div class="flujo-step-icon">💰</div>
+        <div class="flujo-step-title">Cobranza</div>
+        <p class="flujo-step-desc">Las mensualidades se administran con recordatorios automáticos y seguimiento de pagos vencidos.</p>
+        <ul class="flujo-step-tools">
+          <li>Calendario de pagos</li>
+          <li>Recordatorios automáticos por WhatsApp y correo</li>
+          <li>Abonos y reestructuras de pagos</li>
+          <li>Dashboard de cobranza en tiempo real</li>
+        </ul>
+      </div>
+
+      <div class="flujo-step wip reveal">
+        <div class="flujo-wip-badge">En desarrollo</div>
+        <div class="flujo-step-num">Paso 6</div>
+        <div class="flujo-step-icon">🏗️</div>
+        <div class="flujo-step-title">Obras</div>
+        <p class="flujo-step-desc">Seguimiento del avance de construcción con reportes fotográficos desde campo.</p>
+        <ul class="flujo-step-tools">
+          <li>Avance de obra por etapa</li>
+          <li>Reportes fotográficos geolocalizados</li>
+          <li>App de campo para supervisores</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section id="pricing">
     <div class="section-header center reveal">
@@ -1716,7 +1962,10 @@
           <li>Hasta 5 proyectos activos</li>
           <li>Gestión de Proyectos y Lotificaciones</li>
           <li>Hasta 3 Tours Virtuales</li>
-          <li>Cotizador Inteligente</li>
+          <li>Gestión de Compras</li>
+          <li>Gestión de Proveedores y Cuentas por Pagar</li>
+          <li>Cotizador En Tours, App Movil y Administración</li>
+          <li>Gestión de Ventas, Contratos y Cobranza</li>
           <li>Sitio Web Corporativo</li>
           <li>Micrositio por Proyecto</li>
           <li>Personalización de Sitio Web</li>
@@ -1748,6 +1997,8 @@
           <li>Soporte prioritario</li>
         </ul>
         <a href="#contacto" class="pc-cta solid">Solicitar Demo</a>
+        <button class="pc-impl-btn" onclick="document.getElementById('modal-impl').classList.add('active')">Ver plan de implementación →</button>
+        <button class="pc-impl-btn" onclick="openContratoModal()">Ver contrato →</button>
       </div>
 
       <div class="pricing-card reveal">
@@ -1765,6 +2016,8 @@
           <li>Capacitación in-situ</li>
           <li>SLA garantizado</li>
         </ul>
+        <p class="pc-ideal">Ideal para empresas inmobiliarias con múltiples proyectos y necesidades personalizadas.</p>
+        
         <a href="#contacto" class="pc-cta outlined">Hablar con un asesor</a>
       </div>
     </div>
@@ -1825,30 +2078,30 @@
 
       <div class="contact-form reveal">
         <h3 style="font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:1.5rem;font-size:1.1rem;">Solicita tu Demo Gratuita</h3>
-        <form onsubmit="handleForm(event)">
+        <form id="contact-form">
           <div class="form-row">
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" placeholder="Tu nombre" required />
+              <input type="text" name="nombre" placeholder="Tu nombre" required />
             </div>
             <div class="form-group">
               <label>Empresa</label>
-              <input type="text" placeholder="Nombre de tu inmobiliaria" required />
+              <input type="text" name="empresa" placeholder="Nombre de tu inmobiliaria" required />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>Teléfono / WhatsApp</label>
-              <input type="tel" placeholder="+52 (999) 000-0000" required />
+              <input type="tel" name="telefono" placeholder="+52 (999) 000-0000" required />
             </div>
             <div class="form-group">
               <label>Correo electrónico</label>
-              <input type="email" placeholder="correo@empresa.com" required />
+              <input type="email" name="email" placeholder="correo@empresa.com" required />
             </div>
           </div>
           <div class="form-group">
             <label>¿Cuántos proyectos activos manejas?</label>
-            <select>
+            <select name="proyectos">
               <option value="">Seleccionar...</option>
               <option>1 proyecto</option>
               <option>2 – 5 proyectos</option>
@@ -1857,9 +2110,9 @@
           </div>
           <div class="form-group">
             <label>¿Qué necesitas mejorar principalmente?</label>
-            <textarea placeholder="Cuéntanos tu principal reto operativo: ventas, cobranza, obra, comunicación con clientes..."></textarea>
+            <textarea name="mensaje" placeholder="Cuéntanos tu principal reto operativo: ventas, cobranza, obra, comunicación con clientes..."></textarea>
           </div>
-          <button type="submit" class="form-submit">Enviar solicitud de demo →</button>
+          <button type="submit" class="form-submit" id="form-submit-btn">Enviar solicitud de demo →</button>
         </form>
       </div>
     </div>
@@ -2063,14 +2316,46 @@
     });
 
     // Form handler
-    function handleForm(e) {
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = '✅ ¡Solicitud enviada! Te contactaremos pronto.';
-      btn.style.background = '#28a745';
-      btn.style.color = '#fff';
+      const btn = document.getElementById('form-submit-btn');
+      const form = e.target;
+
+      const data = {
+        nombre:    form.nombre.value.trim(),
+        empresa:   form.empresa.value.trim(),
+        telefono:  form.telefono.value.trim(),
+        email:     form.email.value.trim(),
+        proyectos: form.proyectos.value,
+        mensaje:   form.mensaje.value.trim(),
+      };
+
+      btn.textContent = 'Enviando...';
       btn.disabled = true;
-    }
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+
+        if (json.ok) {
+          btn.textContent = '✅ ¡Solicitud enviada! Te contactaremos pronto.';
+          btn.style.background = '#16a34a';
+          form.reset();
+        } else {
+          btn.textContent = '⚠️ ' + (json.message || 'Error al enviar. Intenta de nuevo.');
+          btn.style.background = '#dc2626';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = '⚠️ Error de red. Intenta de nuevo.';
+        btn.style.background = '#dc2626';
+        btn.disabled = false;
+      }
+    });
 
     // Modal: Contrato
     let contratoLoaded = false;
