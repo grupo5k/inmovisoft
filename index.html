@@ -775,12 +775,87 @@
     .pc-plan { font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
     .pc-price { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.5rem; margin-bottom: .25rem; }
     .pc-price span { font-size: 1rem; font-weight: 400; }
-    .pc-desc { font-size: .85rem; color: var(--gray-500); margin-bottom: 2rem; }
+    .pc-price-annual { font-size: .82rem; color: var(--gray-500); margin-bottom: .4rem; }
+    .pc-price-annual strong { color: var(--navy); }
+    .pc-impl { font-size: .8rem; color: var(--gray-500); margin-bottom: 1.5rem; padding: .45rem .75rem; background: var(--gray-200); border-radius: 6px; display: inline-block; }
+    .pricing-card.featured .pc-price-annual { color: rgba(255,255,255,.55); }
+    .pricing-card.featured .pc-price-annual strong { color: var(--gold); }
+    .pricing-card.featured .pc-impl { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); }
+    .pc-desc { font-size: .85rem; color: var(--gray-500); margin-bottom: 1.5rem; }
     .pricing-card.featured .pc-desc { color: rgba(255,255,255,.6); }
 
-    .pc-features { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-bottom: 2rem; }
+    .pc-features { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.25rem; }
     .pc-features li { display: flex; align-items: center; gap: .65rem; font-size: .88rem; }
     .pc-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .pc-ideal { font-size: .78rem; color: var(--gray-500); font-style: italic; margin-bottom: 2rem; line-height: 1.5; border-left: 2px solid var(--gold); padding-left: .75rem; }
+
+    .pc-impl-btn {
+      width: 100%; background: none; border: none; color: var(--gold);
+      font-size: .8rem; font-weight: 600; cursor: pointer; padding: .6rem 0 0;
+      text-align: center; letter-spacing: .5px; text-decoration: underline;
+      text-underline-offset: 3px; opacity: .85; transition: opacity .2s;
+    }
+    .pc-impl-btn:hover { opacity: 1; }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(11,22,40,.72); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-overlay.active { display: flex; animation: fadeIn .2s ease; }
+    @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+    .modal-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      max-width: 660px; width: 100%; max-height: 90vh; overflow-y: auto;
+      padding: 2.5rem 2rem; position: relative;
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.25rem;
+      background: var(--gray-100); border: none; border-radius: 50%;
+      width: 32px; height: 32px; font-size: 1.1rem; cursor: pointer;
+      color: var(--gray-500); display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: var(--gray-200); color: var(--navy); }
+
+    .modal-label { font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+    .modal-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+    .modal-subtitle { font-size: .88rem; color: var(--gray-500); margin-bottom: 2rem; line-height: 1.6; }
+
+    .impl-timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+    .impl-step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding-bottom: 1.75rem; position: relative;
+    }
+    .impl-step:not(:last-child)::before {
+      content: ''; position: absolute; left: 17px; top: 36px;
+      width: 2px; bottom: 0; background: var(--gray-200);
+    }
+    .impl-step-num {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy); color: var(--gold); font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: .85rem; display: flex; align-items: center;
+      justify-content: center; position: relative; z-index: 1;
+    }
+    .impl-step-body { padding-top: .3rem; flex: 1; }
+    .impl-step-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .4rem; flex-wrap: wrap; }
+    .impl-step-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--navy); }
+    .impl-step-week { font-size: .72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); background: rgba(201,149,76,.1); padding: .15rem .55rem; border-radius: 50px; }
+    .impl-step-desc { font-size: .83rem; color: var(--gray-500); line-height: 1.6; }
+    .impl-step-desc ul { margin: .4rem 0 0 .25rem; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+    .impl-step-desc ul li::before { content: '·'; color: var(--gold); font-weight: 700; margin-right: .4rem; }
+
+    .impl-note {
+      background: var(--gray-100); border-radius: 10px; padding: 1rem 1.25rem;
+      font-size: .8rem; color: var(--gray-500); line-height: 1.6;
+      margin-bottom: 1.75rem; border-left: 3px solid var(--gold);
+    }
+    .impl-note strong { color: var(--navy); }
 
     .pc-cta {
       width: 100%;
@@ -1055,7 +1130,64 @@
     }
     .video-play-btn:hover { transform: scale(1.1); }
 
+    /* ── Modal contrato ── */
+    .contrato-modal-card { max-width: 820px !important; }
+
+    .contrato-toolbar {
+      display: flex; justify-content: flex-end; margin-bottom: 1.25rem;
+    }
+    .contrato-download {
+      font-size: .78rem; font-weight: 600; color: var(--gold);
+      text-decoration: none; border: 1.5px solid var(--gold);
+      padding: .3rem .85rem; border-radius: 50px;
+      transition: all .15s;
+    }
+    .contrato-download:hover { background: var(--gold); color: var(--navy); }
+
+    .contrato-content {
+      font-size: .84rem; line-height: 1.8; color: #374151;
+      min-height: 120px;
+    }
+    .contrato-content h1 {
+      font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800;
+      color: var(--navy); margin: 2rem 0 .75rem; padding-top: 1.25rem;
+      border-top: 1.5px solid var(--gray-200); text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .contrato-content h1:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .contrato-content h2 {
+      font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700;
+      color: var(--navy); margin: 1.5rem 0 .5rem;
+    }
+    .contrato-content h3 {
+      font-size: .85rem; font-weight: 700; color: var(--navy); margin: 1rem 0 .35rem;
+    }
+    .contrato-content hr { border: none; border-top: 1px solid var(--gray-200); margin: 1.25rem 0; }
+    .contrato-content p { margin-bottom: .65rem; }
+    .contrato-content strong { color: var(--navy); font-weight: 700; }
+    .contrato-content ol, .contrato-content ul { padding-left: 1.4rem; margin-bottom: .65rem; }
+    .contrato-content li { margin-bottom: .25rem; }
+    .contrato-content table {
+      width: 100%; border-collapse: collapse; font-size: .8rem; margin: 1rem 0;
+    }
+    .contrato-content th {
+      background: var(--navy); color: var(--white); padding: .55rem .75rem;
+      text-align: left; font-weight: 700;
+    }
+    .contrato-content td {
+      padding: .45rem .75rem; border-bottom: 1px solid var(--gray-200); vertical-align: top;
+    }
+    .contrato-content tr:nth-child(even) td { background: var(--gray-100); }
+    .contrato-content .spinner {
+      text-align: center; padding: 2.5rem; color: var(--gray-500); font-size: .85rem;
+    }
+    .contrato-footer {
+      text-align: center; padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-200); margin-top: 2rem;
+    }
+
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
 </head>
 <body>
 
@@ -1563,12 +1695,6 @@
         </div>
       </div>
     </div>
-    <div class="testimonial-logos">
-      <div class="tl-tag">✅ Sistema en producción</div>
-      <div class="tl-tag">✅ Más de 87 lotes gestionados</div>
-      <div class="tl-tag">✅ App móvil activa</div>
-      <div class="tl-tag">✅ WhatsApp Bot operando</div>
-    </div>
   </section>
 
   <!-- PRICING -->
@@ -1582,24 +1708,32 @@
     <div class="pricing-grid">
       <div class="pricing-card reveal">
         <div class="pc-plan">Starter</div>
-        <div class="pc-price">A consultar</div>
-        <div class="pc-desc">Para inmobiliarias que inician su digitalización</div>
+        <div class="pc-price">$8,000<span>/mes</span></div>
+        <div class="pc-price-annual">o <strong>$88,000/año</strong> · ahorras 1 mes</div>
+        <div class="pc-impl">+ $25,000 implementación <em>(pago único)</em></div>
+        <div class="pc-desc">Todo lo necesario para digitalizar la presentación y comercialización de tus desarrollos inmobiliarios.</div>
         <ul class="pc-features">
-          <li>Módulo de Ventas y Lotes</li>
-          <li>Micrositio público</li>
-          <li>Generación de contratos</li>
-          <li>Cobranza básica</li>
-          <li>WhatsApp integrado</li>
-          <li>App móvil</li>
-          <li>Soporte por email</li>
+          <li>Hasta 5 proyectos activos</li>
+          <li>Gestión de Proyectos y Lotificaciones</li>
+          <li>Hasta 3 Tours Virtuales</li>
+          <li>Cotizador Inteligente</li>
+          <li>Sitio Web Corporativo</li>
+          <li>Micrositio por Proyecto</li>
+          <li>Personalización de Sitio Web</li>
+          <li>App Móvil para Asesores</li>
+          <li>Publicación en App Store y Google Play</li>
+          <li>Capacitación incluida</li>
         </ul>
-        <a href="#contacto" class="pc-cta outlined">Consultar precio</a>
+        <p class="pc-ideal">Ideal para empresas inmobiliarias que buscan iniciar su transformación digital con herramientas profesionales para exhibir proyectos, captar prospectos y facilitar el proceso de cotización.</p>
+        <a href="#contacto" class="pc-cta outlined">Solicitar información</a>
+        <button class="pc-impl-btn" onclick="document.getElementById('modal-impl').classList.add('active')">Ver plan de implementación →</button>
+        <button class="pc-impl-btn" onclick="openContratoModal()">Ver contrato →</button>
       </div>
 
       <div class="pricing-card featured reveal">
         <div class="popular-badge">Más popular</div>
         <div class="pc-plan">Business</div>
-        <div class="pc-price" style="color:var(--gold)">A consultar</div>
+        <div class="pc-price" style="color:var(--gold)">$12,000<span>/mes</span></div>
         <div class="pc-desc">Para desarrolladores inmobiliarios en crecimiento</div>
         <ul class="pc-features">
           <li>Todo lo de Starter</li>
@@ -1609,7 +1743,7 @@
           <li>Facturación electrónica CFDI</li>
           <li>Firma digital DocuSign</li>
           <li>Agente de IA integrado</li>
-          <li>Tours 360° virtuales</li>
+          <li>6 Tours Virtuales</li>
           <li>CRM con oportunidades</li>
           <li>Soporte prioritario</li>
         </ul>
@@ -1669,14 +1803,14 @@
             <div class="ci-icon">💬</div>
             <div>
               <div class="ci-label">WhatsApp directo</div>
-              <div class="ci-value">+52 (999) 000-0000</div>
+              <div class="ci-value">+52 (951) 504-2982</div>
             </div>
           </div>
           <div class="ci-item">
             <div class="ci-icon">🏢</div>
             <div>
               <div class="ci-label">Desarrollado por</div>
-              <div class="ci-value">Xquenda · Desarrollo de Software</div>
+              <div class="ci-value">Xquenda · Soluciones Tecnológicas</div>
             </div>
           </div>
           <div class="ci-item">
@@ -1771,8 +1905,143 @@
     </div>
   </footer>
 
+  <!-- Modal: Contrato -->
+  <div id="modal-contrato" class="modal-overlay" onclick="closeContratoModal(event)">
+    <div class="modal-card contrato-modal-card">
+      <button class="modal-close" onclick="document.getElementById('modal-contrato').classList.remove('active')" aria-label="Cerrar">&times;</button>
+
+      <div class="modal-label">Starter</div>
+      <h2 class="modal-title">Contrato de Servicio</h2>
+      <p class="modal-subtitle">Contrato de Licencia de Uso de Software como Servicio (SaaS) y Prestación de Servicios Tecnológicos — Xquenda Soluciones Tecnológicas.</p>
+
+      <div class="contrato-toolbar">
+        <a href="contrato_basico.md" download="Contrato_Plan_Basico_Inmovisoft.md" class="contrato-download">⬇ Descargar</a>
+      </div>
+
+      <div id="contrato-content" class="contrato-content">
+        <div class="spinner">Cargando contrato…</div>
+      </div>
+
+      <div class="contrato-footer">
+        <a href="#contacto" class="pc-cta solid" style="display:inline-block;text-decoration:none;max-width:320px;" onclick="document.getElementById('modal-contrato').classList.remove('active')">Solicitar mi contrato firmado →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Plan de Implementación -->
+  <div id="modal-impl" class="modal-overlay" onclick="closeImplModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="document.getElementById('modal-impl').classList.remove('active')" aria-label="Cerrar">&times;</button>
+
+      <div class="modal-label">Starter</div>
+      <h2 class="modal-title">Plan de Implementación</h2>
+      <p class="modal-subtitle">Proceso estructurado en 5 fases para poner en marcha tu plataforma en 5 a 6 semanas, desde el primer contacto hasta el lanzamiento oficial.</p>
+
+      <div class="impl-timeline">
+        <div class="impl-step">
+          <div class="impl-step-num">1</div>
+          <div class="impl-step-body">
+            <div class="impl-step-header">
+              <span class="impl-step-title">Kickoff y recopilación de información</span>
+              <span class="impl-step-week">Semana 1</span>
+            </div>
+            <div class="impl-step-desc">
+              Reunión de inicio con el equipo clave del cliente para alinear expectativas y tiempos.
+              <ul>
+                <li>Recopilación de identidad visual: logo, colores, tipografía</li>
+                <li>Levantamiento de proyectos, etapas y lotes existentes</li>
+                <li>Definición de estructura del sitio web y micrositios</li>
+                <li>Alta de usuarios administradores y asesores</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="impl-step">
+          <div class="impl-step-num">2</div>
+          <div class="impl-step-body">
+            <div class="impl-step-header">
+              <span class="impl-step-title">Configuración de la plataforma</span>
+              <span class="impl-step-week">Semanas 2 – 3</span>
+            </div>
+            <div class="impl-step-desc">
+              Configuración completa del sistema con la información del cliente.
+              <ul>
+                <li>Carga inicial de hasta 5 proyectos, etapas y lotes</li>
+                <li>Configuración del cotizador: precios, enganche y plazos</li>
+                <li>Integración de hasta 3 tours virtuales 360°</li>
+                <li>Configuración de formularios y captación de prospectos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="impl-step">
+          <div class="impl-step-num">3</div>
+          <div class="impl-step-body">
+            <div class="impl-step-header">
+              <span class="impl-step-title">Sitio web corporativo y micrositios</span>
+              <span class="impl-step-week">Semanas 3 – 4</span>
+            </div>
+            <div class="impl-step-desc">
+              Personalización y publicación de los espacios digitales de la inmobiliaria.
+              <ul>
+                <li>Personalización del sitio web con imagen, colores y contenido de la marca</li>
+                <li>Creación y publicación del micrositio de cada proyecto activo</li>
+                <li>Revisión y aprobación por parte del cliente antes de publicar</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="impl-step">
+          <div class="impl-step-num">4</div>
+          <div class="impl-step-body">
+            <div class="impl-step-header">
+              <span class="impl-step-title">App Móvil: personalización y publicación</span>
+              <span class="impl-step-week">Semanas 4 – 5</span>
+            </div>
+            <div class="impl-step-desc">
+              Publicación de la app de asesores en las tiendas oficiales.
+              <ul>
+                <li>Personalización de la app con el nombre e imagen de la inmobiliaria</li>
+                <li>Proceso de publicación en App Store (Apple) y Google Play</li>
+                <li>Pruebas de descarga e inicio de sesión con el equipo de asesores</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="impl-step">
+          <div class="impl-step-num">5</div>
+          <div class="impl-step-body">
+            <div class="impl-step-header">
+              <span class="impl-step-title">Capacitación y lanzamiento</span>
+              <span class="impl-step-week">Semanas 5 – 6</span>
+            </div>
+            <div class="impl-step-desc">
+              Entrenamiento del equipo y puesta en marcha oficial de la plataforma.
+              <ul>
+                <li>Sesión de capacitación para administradores (gestión de proyectos, lotes y reportes)</li>
+                <li>Sesión de capacitación para asesores (cotizador y app móvil)</li>
+                <li>Revisión final, ajustes y aprobación del cliente</li>
+                <li>Lanzamiento oficial y activación de todos los canales digitales</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impl-note">
+        <strong>Acompañamiento post-lanzamiento:</strong> Durante los primeros 30 días tu equipo cuenta con soporte prioritario por correo y WhatsApp para resolver dudas, ajustes menores y garantizar una adopción exitosa de la plataforma.
+      </div>
+
+      <a href="#contacto" class="pc-cta solid" style="display:block;text-align:center;max-width:300px;margin:0 auto;text-decoration:none;" onclick="document.getElementById('modal-impl').classList.remove('active')">Agendar mi implementación →</a>
+    </div>
+  </div>
+
   <!-- WhatsApp Float -->
-  <a href="https://wa.me/5219999999999" class="wa-float" title="Escríbenos por WhatsApp">💬</a>
+  <a href="https://wa.me/5219515042985" class="wa-float" title="Escríbenos por WhatsApp">💬</a>
 
   <script>
     // Scroll reveal
@@ -1801,6 +2070,39 @@
       btn.style.background = '#28a745';
       btn.style.color = '#fff';
       btn.disabled = true;
+    }
+
+    // Modal: Contrato
+    let contratoLoaded = false;
+    async function openContratoModal() {
+      document.getElementById('modal-contrato').classList.add('active');
+      if (contratoLoaded) return;
+      try {
+        const res = await fetch('contrato_basico.md');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const md = await res.text();
+        document.getElementById('contrato-content').innerHTML = marked.parse(md);
+        contratoLoaded = true;
+      } catch(e) {
+        document.getElementById('contrato-content').innerHTML =
+          '<p style="color:#c0392b;text-align:center;padding:1rem">No se pudo cargar el contrato. Por favor contáctanos directamente.</p>';
+      }
+    }
+    function closeContratoModal(e) {
+      if (e.target === document.getElementById('modal-contrato'))
+        document.getElementById('modal-contrato').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('modal-impl').classList.remove('active');
+        document.getElementById('modal-contrato').classList.remove('active');
+      }
+    });
+
+    // Modal: Plan de Implementación
+    function closeImplModal(e) {
+      if (e.target === document.getElementById('modal-impl'))
+        document.getElementById('modal-impl').classList.remove('active');
     }
 
     // Nav scroll effect
